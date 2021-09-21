@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
+
+$dark: #303030;
+$white: #fff;
+
+%rounded {
+  content: "";
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  background: transparent;
+  border-radius: 50%;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "Open sans", sans-serif;
+}
+
+#slider {
+  overflow: hidden;
+  position: relative;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+
+  @media screen and(max-width: 768px) {
+    border-radius: 0;
+  }
+
+  button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    font-size: 2rem;
+    background: $white;
+    color: $dark;
+    border: none;
+    padding: 0.25rem;
+
+    &.prev {
+      left: 0;
+      border-radius: 0 0.25rem 0.25rem 0;
+
+      &::before {
+        @extend %rounded;
+        top: -1rem;
+        left: 0;
+        box-shadow: -0.5rem 0.5rem 0 $white;
+      }
+      &::after {
+        @extend %rounded;
+        bottom: -1rem;
+        left: 0;
+        box-shadow: -0.5rem -0.5rem 0 $white;
+      }
+    }
+    &.next {
+      right: 0;
+      border-radius: 0.25rem 0 0 0.25rem;
+
+      &::before {
+        @extend %rounded;
+        top: -1rem;
+        right: 0;
+        box-shadow: 0.5rem 0.5rem 0 $white;
+      }
+      &::after {
+        @extend %rounded;
+        bottom: -1rem;
+        right: 0;
+        box-shadow: 0.5rem -0.5rem 0 $white;
+      }
+    }
+
+    &:active i {
+      opacity: 0.9;
+    }
+  }
+
+  ul {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+
+    li {
+      padding: 0 3rem;
+      color: $white;
+      position: relative;
+      text-align: center;
+      flex-direction: column;
+      background: $dark;
+      width: 80vw;
+      height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @media screen and(max-width: 768px) {
+        width: 100vw;
+        height: 100vh;
+      }
+
+      h2 {
+        font-size: 15rem;
+        font-weight: 400;
+        color: $white;
+        opacity: 0.1;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
